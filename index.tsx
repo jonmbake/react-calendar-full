@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { DayView, MonthView, WeekView } from "./views";
 import { getDateInfo, moveDate } from "./utils/date";
 import CalendarEventStore from "./calendar-event-store";
-import 'bootstrap/dist/css/bootstrap.css'
-import './calendar.css'
+import "bootstrap/dist/css/bootstrap.css";
+import "./calendar.css";
 
 export interface Props {
   eventStore: CalendarEventStore;

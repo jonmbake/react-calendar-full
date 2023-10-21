@@ -1,6 +1,35 @@
-export const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-export const daysOfWeekShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-export const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+export const daysOfWeek = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+export const daysOfWeekShort = [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+];
+export const monthsOfYear = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 export type DateInfo = {
   dayOfWeek: string;
@@ -19,7 +48,7 @@ export function getDateInfo(inputDate: Date): DateInfo {
 
   let startOfWeek = new Date(inputDate);
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
-  
+
   const endOfWeek = new Date(startOfWeek);
   endOfWeek.setDate(endOfWeek.getDate() + 6);
 
@@ -37,4 +66,30 @@ export function moveDate(date: Date, amount: number): Date {
   const nextDate = new Date(date);
   nextDate.setDate(date.getDate() + amount);
   return nextDate;
+}
+
+export function startOfWeek(date: Date): Date {
+  let startOfWeek = new Date(date);
+  startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+  return startOfWeek;
+}
+
+export function datesOfWeek(date: Date): Array<Date> {
+  let currentDate = startOfWeek(date);
+  const datesOfWeek: Array<Date> = [];
+  Array(7)
+    .fill(null)
+    .forEach(() => {
+      datesOfWeek.push(currentDate);
+      currentDate = moveDate(currentDate, 1);
+    });
+  return datesOfWeek;
+}
+
+export function areDatesEqual(date1: Date, date2: Date): boolean {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
 }
