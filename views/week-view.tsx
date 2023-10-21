@@ -1,8 +1,14 @@
 import { useState } from "react";
-import CalendarEventStore from "../calendar-event-store";
+import CalendarEventStore, { CalendarEvent } from "../calendar-event-store";
 import CalendarEventsForDate from "../components/calendar-events-for-date";
 import HoursColumn from "../components/hours-column";
-import { datesOfWeek, daysOfWeekShort } from "../utils/date";
+import {
+  datesOfWeek,
+  daysOfWeekShort,
+  formatDateToYYYYMMDD,
+} from "../utils/date";
+import EventModal from "../components/event-modal";
+import { minutesSinceMidnightToHHmm, roundToNearest15 } from "../utils/time";
 
 interface Props {
   activeDate: Date;
@@ -17,7 +23,10 @@ const WeekView = ({
   dayEndTime,
   eventStore,
 }: Props) => {
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalEvent, setModalEvent] = useState<CalendarEvent | null>(null);
+  const handleEventSubmit = (eventData: CalendarEvent) => {
+    eventStore.addOrUpdate(eventData);
+  };
 
   const numberOfHoursBetweenDayStartEnd = dayEndTime - dayStartTime;
 
@@ -33,17 +42,37 @@ const WeekView = ({
             <div
               className="event-col border"
               style={{ height: `${60 * numberOfHoursBetweenDayStartEnd}px` }}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                console.log(e.nativeEvent.offsetY);
+                setModalEvent({
+                  date: formatDateToYYYYMMDD(date),
+                  description: "",
+                  startTime: minutesSinceMidnightToHHmm(
+                    roundToNearest15(dayStartTime * 60 + e.nativeEvent.offsetY),
+                  ),
+                  endTime: minutesSinceMidnightToHHmm(
+                    roundToNearest15(dayStartTime * 60 + e.nativeEvent.offsetY + 60),
+                  ),
+                });
+              }}
             >
               <CalendarEventsForDate
                 dayStartTime={dayStartTime}
                 date={date}
                 events={eventStore.events}
-                onClick={() => setShowModal(true)}
+                onClick={(event: CalendarEvent) => setModalEvent(event)}
               />
             </div>
           </div>
         ))}
       </div>
+      <EventModal
+        date={activeDate}
+        onClose={() => setModalEvent(null)}
+        event={modalEvent}
+        onSubmit={handleEventSubmit}
+        dayStartTime={dayStartTime}
+      />
     </div>
   );
 };

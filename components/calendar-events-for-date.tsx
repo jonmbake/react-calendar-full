@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react";
 import { CalendarEvent } from "../calendar-event-store";
 import { areDatesEqual } from "../utils/date";
 import { calculateMinutesSinceMidnight } from "../utils/time";
@@ -7,7 +6,7 @@ export interface Props {
   dayStartTime: number;
   events: Array<CalendarEvent>;
   date: Date;
-  onClick: MouseEventHandler;
+  onClick: (e: CalendarEvent) => void;
 }
 
 function getEventPosition(
@@ -45,7 +44,10 @@ const CalendarEventsForDate = ({
               key={event.id}
               className="calendar-event green"
               style={positionStyle}
-              onClick={onClick}
+              onClick={(e: any) => {
+                e.stopPropagation();
+                onClick(event);
+              }}
             >
               {event.description}
             </div>

@@ -52,7 +52,9 @@
   padding-left: 4px;
 }
 
-/* Example color schemes similar to Bootstrap alerts */
+.calendar-event:hover {
+  cursor: pointer;
+}
 
 .calendar-event.green {
   background-color:#d1ffbf;
