@@ -1,0 +1,87 @@
+.weekly-view > .time-col {
+  flex: 0 0 auto;
+  width: 9%;
+}
+
+.weekly-view > .day-col {
+  flex: 0 0 auto;
+  width: 13%;
+  position: relative;
+}
+
+.hour-cell {
+  height: 60px;
+}
+
+.day-row {
+  height: 24px;
+}
+
+.month-header {
+  height: 28px;
+  font-weight: 400;
+  line-height: 28px;
+  margin-left: 10px;
+}
+
+.date-col {
+  position: relative;
+  padding: 0;
+}
+
+.event-col {
+  background: repeating-linear-gradient(
+      to bottom,
+      #fff 0,
+      #fff 59px,
+      #dee2e6 59px,  /* Adjust this color to your desired border color */
+      #dee2e6 60px
+  );
+  position: relative;
+  padding: 0;
+}
+
+.calendar-event {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  padding-left: 4px;
+}
+
+/* Example color schemes similar to Bootstrap alerts */
+
+.calendar-event.green {
+  background-color:#d1ffbf;
+  color:#3c8222;
+  border-left: 3px solid rgb(101, 219, 57);
+}
+
+.calendar-event.blue {
+  background-color:#34aadc;
+  color:#1f6583;;
+  border-left: 3px solid rgb(101, 219, 57);
+}
+
+.calendar-event.success {
+  background-color: #28a745;
+  border-color: #269940;
+}
+
+.calendar-event.warning {
+  background-color: #ffc107;
+  border-color: #ffb507;
+}
+
+.calendar-event.danger {
+  background-color: #dc3545;
+  border-color: #d2253a;
+}
+
+.calendar-event.primary {
+  background-color: #007bff;
+  border-color: #006fee;
+}
