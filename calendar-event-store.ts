@@ -34,6 +34,10 @@ class CalendarEventStore {
       this.add(event);
     }
   }
+
+  public delete(eventId: number) {
+    this.events = this.events.filter((event) => event.id !== eventId);
+  }
 }
 
 export default CalendarEventStore;

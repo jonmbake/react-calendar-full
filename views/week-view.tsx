@@ -25,9 +25,6 @@ const WeekView = ({
   eventStore,
 }: Props) => {
   const [modalEvent, setModalEvent] = useState<CalendarEvent | null>(null);
-  const handleEventSubmit = (eventData: CalendarEvent) => {
-    eventStore.addOrUpdate(eventData);
-  };
 
   const numberOfHoursBetweenDayStartEnd = dayEndTime - dayStartTime;
 
@@ -35,9 +32,14 @@ const WeekView = ({
     <div className="container">
       <div className="row weekly-view">
         <HoursColumn dayStartTime={dayStartTime} dayEndTime={dayEndTime} />
-        {datesOfWeek(activeDate).map(date => (
+        {datesOfWeek(activeDate).map((date) => (
           <div className="d-flex flex-column date-col col day-col">
-            <div className={ "day-header" + (areDatesEqual(date, new Date()) ? ' bg-dark-subtle' : '') }>
+            <div
+              className={
+                "day-header" +
+                (areDatesEqual(date, new Date()) ? " bg-dark-subtle" : "")
+              }
+            >
               <strong>{date.getDate()}</strong> {daysOfWeekShort[date.getDay()]}
             </div>
             <div
@@ -51,7 +53,9 @@ const WeekView = ({
                     roundToNearest15(dayStartTime * 60 + e.nativeEvent.offsetY),
                   ),
                   endTime: minutesSinceMidnightToHHmm(
-                    roundToNearest15(dayStartTime * 60 + e.nativeEvent.offsetY + 60),
+                    roundToNearest15(
+                      dayStartTime * 60 + e.nativeEvent.offsetY + 60,
+                    ),
                   ),
                 });
               }}
@@ -70,7 +74,7 @@ const WeekView = ({
         date={activeDate}
         onClose={() => setModalEvent(null)}
         event={modalEvent}
-        onSubmit={handleEventSubmit}
+        eventStore={eventStore}
         dayStartTime={dayStartTime}
       />
     </div>

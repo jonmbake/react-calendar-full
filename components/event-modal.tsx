@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { CalendarEvent } from "../calendar-event-store";
+import CalendarEventStore, { CalendarEvent } from "../calendar-event-store";
 import { formatTimeToHHmm } from "../utils/time";
 import { formatDateToYYYYMMDD } from "../utils/date";
 
@@ -8,7 +8,7 @@ type Props = {
   dayStartTime: number;
   onClose: () => void;
   event?: CalendarEvent | null;
-  onSubmit: (eventData: CalendarEvent) => void;
+  eventStore: CalendarEventStore;
 };
 
 const EventModal = ({
@@ -16,7 +16,7 @@ const EventModal = ({
   dayStartTime,
   onClose,
   event,
-  onSubmit,
+  eventStore,
 }: Props) => {
   const [formData, setFormData] = useState<CalendarEvent>(
     event || {
@@ -37,13 +37,22 @@ const EventModal = ({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    onSubmit({
+    eventStore.addOrUpdate({
       id: event?.id,
       date: formData.get("date") as string,
       description: formData.get("description") as string,
       startTime: formData.get("startTime")?.toString() || "",
       endTime: formData.get("endTime")?.toString() || "",
     });
+    onClose();
+  };
+
+  const handleDelete = (e: FormEvent<HTMLButtonElement>) => {
+    if (event?.id == null) {
+      onClose();
+      return;
+    }
+    eventStore.delete(event?.id);
     onClose();
   };
 
@@ -124,9 +133,20 @@ const EventModal = ({
                     onChange={handleChange}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
+                <div className="d-flex justify-content-end">
+                  {event?.id != null && (
+                    <button
+                      type="button"
+                      className="btn btn-danger me-2"
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </button>
+                  )}
+                  <button type="submit" className="btn btn-primary">
+                    Save
+                  </button>
+                </div>
               </form>
             </div>
           </div>
