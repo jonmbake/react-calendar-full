@@ -9,7 +9,7 @@ const HoursColumn = ({ dayStartTime, dayEndTime }: Props) => {
   const numberOfHours = dayEndTime - dayStartTime;
   return (
     <div className="d-flex flex-column date-col col time-col">
-      <div className="day-row"></div>
+      <div className="day-header"></div>
       {Array.from({ length: numberOfHours }).map((_, index) => {
         const hour = dayStartTime + index;
         return (

@@ -13,8 +13,9 @@
   height: 60px;
 }
 
-.day-row {
+.day-header {
   height: 24px;
+  padding-left: 2px;
 }
 
 .month-header {

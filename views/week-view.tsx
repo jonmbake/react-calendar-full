@@ -3,6 +3,7 @@ import CalendarEventStore, { CalendarEvent } from "../calendar-event-store";
 import CalendarEventsForDate from "../components/calendar-events-for-date";
 import HoursColumn from "../components/hours-column";
 import {
+  areDatesEqual,
   datesOfWeek,
   daysOfWeekShort,
   formatDateToYYYYMMDD,
@@ -34,16 +35,15 @@ const WeekView = ({
     <div className="container">
       <div className="row weekly-view">
         <HoursColumn dayStartTime={dayStartTime} dayEndTime={dayEndTime} />
-        {datesOfWeek(activeDate).map((date) => (
+        {datesOfWeek(activeDate).map(date => (
           <div className="d-flex flex-column date-col col day-col">
-            <div className="day-row">
+            <div className={ "day-header" + (areDatesEqual(date, new Date()) ? ' bg-dark-subtle' : '') }>
               <strong>{date.getDate()}</strong> {daysOfWeekShort[date.getDay()]}
             </div>
             <div
               className="event-col border"
               style={{ height: `${60 * numberOfHoursBetweenDayStartEnd}px` }}
               onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-                console.log(e.nativeEvent.offsetY);
                 setModalEvent({
                   date: formatDateToYYYYMMDD(date),
                   description: "",
