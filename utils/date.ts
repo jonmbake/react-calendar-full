@@ -68,6 +68,12 @@ export function moveDate(date: Date, amount: number): Date {
   return nextDate;
 }
 
+export function moveMonth(date: Date, amount: number): Date {
+  let newDate = new Date(date);
+  newDate.setMonth(date.getMonth() + amount);
+  return newDate;
+}
+
 export function startOfWeek(date: Date): Date {
   let startOfWeek = new Date(date);
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());

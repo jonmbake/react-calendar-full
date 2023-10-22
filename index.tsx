@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { DayView, MonthView, WeekView } from "./views";
-import { getDateInfo, moveDate } from "./utils/date";
+import { getDateInfo, moveDate, moveMonth } from "./utils/date";
 import CalendarEventStore from "./calendar-event-store";
 import "bootstrap/dist/css/bootstrap.css";
 import "./calendar.css";
@@ -52,6 +52,34 @@ const Calendar = ({ eventStore }: Props) => {
       break;
   }
 
+  const moveDateLeft = () => {
+    switch (view) {
+      case "DAY":
+        setActiveDate(moveDate(activeDate, -1));
+        break;
+      case "WEEK":
+        setActiveDate(moveDate(activeDate, -7));
+        break;
+      case "MONTH":
+        setActiveDate(moveMonth(activeDate, -1));
+        break;
+    }
+  };
+
+  const moveDateRight = () => {
+    switch (view) {
+      case "DAY":
+        setActiveDate(moveDate(activeDate, 1));
+        break;
+      case "WEEK":
+        setActiveDate(moveDate(activeDate, 7));
+        break;
+      case "MONTH":
+        setActiveDate(moveMonth(activeDate, 1));
+        break;
+    }
+  };
+
   const dateInfo = getDateInfo(activeDate);
   return (
     <>
@@ -95,7 +123,7 @@ const Calendar = ({ eventStore }: Props) => {
           >
             <button
               className="btn btn-outline-secondary"
-              onClick={() => setActiveDate(moveDate(activeDate, -7))}
+              onClick={moveDateLeft}
             >
               &lt;
             </button>
@@ -107,7 +135,7 @@ const Calendar = ({ eventStore }: Props) => {
             </button>
             <button
               className="btn btn-outline-secondary"
-              onClick={() => setActiveDate(moveDate(activeDate, 7))}
+              onClick={moveDateRight}
             >
               &gt;
             </button>

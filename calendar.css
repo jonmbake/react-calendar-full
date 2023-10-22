@@ -1,4 +1,4 @@
-.weekly-view > .time-col {
+.time-col {
   flex: 0 0 auto;
   width: 9%;
 }
@@ -6,6 +6,12 @@
 .weekly-view > .day-col {
   flex: 0 0 auto;
   width: 13%;
+  position: relative;
+}
+
+.day-view > .day-col {
+  flex: 0 0 auto;
+  width: 91%;
   position: relative;
 }
 
