@@ -1,4 +1,5 @@
 import { ISO8601DateString, ISO8601TimeString } from "./types/ISO8601";
+import { areDatesEqual } from "./utils/date";
 
 export type CalendarEvent = {
   id?: number;
@@ -46,6 +47,13 @@ export class CalendarEventStore {
     if (event) {
       this.notify(this.deleteListeners, event);
     }
+  }
+
+  public eventsForDate(date: Date) {
+    return this.events.filter((event) => {
+      const eventDate = new Date(event.date + "T00:00");
+      return areDatesEqual(eventDate, date);
+    });
   }
 
   public onAdd(listener: CalendarEventListener): void {

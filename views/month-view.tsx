@@ -29,17 +29,6 @@ const MonthView = ({
   const daysInMonth = getDaysInMonth(activeDate);
   const totalCells = Math.ceil((daysInMonth + firstDayOfMonth) / 7) * 7;
 
-  const getEventsCountForDay = (day: number) => {
-    const eventsForDay = eventStore.events.filter((event) => {
-      const eventDate = new Date(event.date);
-      return (
-        eventDate.getDate() === day &&
-        eventDate.getMonth() === activeDate.getMonth() &&
-        eventDate.getFullYear() === activeDate.getFullYear()
-      );
-    });
-    return eventsForDay.length;
-  };
   return (
     <div className="container">
       <div className="calendar-month-view">
@@ -59,7 +48,9 @@ const MonthView = ({
             day,
           );
           const isWithinMonth = day > 0 && day <= daysInMonth;
-          const eventCount = isWithinMonth ? getEventsCountForDay(day) : 0;
+          const eventCount = isWithinMonth
+            ? eventStore.eventsForDate(date).length
+            : 0;
 
           return (
             <div

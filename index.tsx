@@ -6,10 +6,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./calendar.css";
 
 export interface Props {
+  dayStartTime: number;
+  dayEndTime: number;
   eventStore: CalendarEventStore;
 }
 
-const Calendar = ({ eventStore }: Props) => {
+const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
   const [view, setView] = useState("WEEK");
   const [activeDate, setActiveDate] = useState(new Date());
   const [, setEvents] = useState(eventStore.events);
@@ -24,8 +26,8 @@ const Calendar = ({ eventStore }: Props) => {
       viewEL = (
         <DayView
           activeDate={activeDate}
-          dayStartTime={5}
-          dayEndTime={23}
+          dayStartTime={dayStartTime}
+          dayEndTime={dayEndTime}
           eventStore={eventStore}
         />
       );
@@ -34,8 +36,8 @@ const Calendar = ({ eventStore }: Props) => {
       viewEL = (
         <WeekView
           activeDate={activeDate}
-          dayStartTime={5}
-          dayEndTime={23}
+          dayStartTime={dayStartTime}
+          dayEndTime={dayEndTime}
           eventStore={eventStore}
         />
       );
@@ -44,8 +46,8 @@ const Calendar = ({ eventStore }: Props) => {
       viewEL = (
         <MonthView
           activeDate={activeDate}
-          dayStartTime={5}
-          dayEndTime={23}
+          dayStartTime={dayStartTime}
+          dayEndTime={dayEndTime}
           eventStore={eventStore}
           onDayClick={(date: Date) => {
             setActiveDate(date);

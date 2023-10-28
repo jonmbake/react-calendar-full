@@ -1,11 +1,9 @@
 import { CalendarEvent } from "../calendar-event-store";
-import { areDatesEqual } from "../utils/date";
 import { calculateMinutesSinceMidnight } from "../utils/time";
 
 export interface Props {
   dayStartTime: number;
   events: Array<CalendarEvent>;
-  date: Date;
   onClick: (e: CalendarEvent) => void;
 }
 
@@ -24,35 +22,25 @@ function getEventPosition(
   };
 }
 
-const CalendarEventsForDate = ({
-  dayStartTime,
-  events,
-  date,
-  onClick,
-}: Props) => {
+const CalendarEventsForDate = ({ dayStartTime, events, onClick }: Props) => {
   return (
     <>
-      {events
-        .filter((event) => {
-          const eventDate = new Date(event.date + "T00:00");
-          return areDatesEqual(eventDate, date);
-        })
-        .map((event) => {
-          const positionStyle = getEventPosition(event, dayStartTime);
-          return (
-            <div
-              key={event.id}
-              className="calendar-event green"
-              style={positionStyle}
-              onClick={(e: any) => {
-                e.stopPropagation();
-                onClick(event);
-              }}
-            >
-              {event.description}
-            </div>
-          );
-        })}
+      {events.map((event) => {
+        const positionStyle = getEventPosition(event, dayStartTime);
+        return (
+          <div
+            key={event.id}
+            className="calendar-event green"
+            style={positionStyle}
+            onClick={(e: any) => {
+              e.stopPropagation();
+              onClick(event);
+            }}
+          >
+            {event.description}
+          </div>
+        );
+      })}
     </>
   );
 };

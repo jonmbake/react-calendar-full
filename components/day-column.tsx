@@ -49,8 +49,7 @@ const DayColumn = ({ date, dayStartTime, dayEndTime, eventStore }: Props) => {
       >
         <CalendarEventsForDate
           dayStartTime={dayStartTime}
-          date={date}
-          events={eventStore.events}
+          events={eventStore.eventsForDate(date)}
           onClick={(event: CalendarEvent) => setModalEvent(event)}
         />
       </div>
