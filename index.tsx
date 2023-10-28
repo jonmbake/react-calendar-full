@@ -47,6 +47,10 @@ const Calendar = ({ eventStore }: Props) => {
           dayStartTime={5}
           dayEndTime={23}
           eventStore={eventStore}
+          onDayClick={(date: Date) => {
+            setActiveDate(date);
+            setView("DAY");
+          }}
         />
       );
       break;
