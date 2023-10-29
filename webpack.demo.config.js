@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.tsx',
+  entry: './demo/index.tsx',
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist', 'umd'),
+    path: path.resolve(__dirname, 'dist', 'demo'),
     libraryTarget: 'umd',
   },
   resolve: {

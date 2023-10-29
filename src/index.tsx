@@ -6,26 +6,31 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./calendar.css";
 
 export interface Props {
+  activeDate?: Date,
   dayStartTime: number;
   dayEndTime: number;
   eventStore: CalendarEventStore;
 }
 
-const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
+const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) => {
   const [view, setView] = useState("WEEK");
-  const [activeDate, setActiveDate] = useState(new Date());
+  const [activeDateState, setActiveDateState] = useState(activeDate || new Date());
   const [, setEvents] = useState(eventStore.events);
 
   useEffect(() => {
     setEvents(eventStore.events);
   }, [eventStore.events]);
 
+  useEffect(() => {
+    setActiveDateState(activeDate || new Date());
+  }, [activeDate]);
+
   let viewEL;
   switch (view) {
     case "DAY":
       viewEL = (
         <DayView
-          activeDate={activeDate}
+          activeDate={activeDateState}
           dayStartTime={dayStartTime}
           dayEndTime={dayEndTime}
           eventStore={eventStore}
@@ -35,7 +40,7 @@ const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
     case "WEEK":
       viewEL = (
         <WeekView
-          activeDate={activeDate}
+          activeDate={activeDateState}
           dayStartTime={dayStartTime}
           dayEndTime={dayEndTime}
           eventStore={eventStore}
@@ -45,12 +50,12 @@ const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
     case "MONTH":
       viewEL = (
         <MonthView
-          activeDate={activeDate}
+          activeDate={activeDateState}
           dayStartTime={dayStartTime}
           dayEndTime={dayEndTime}
           eventStore={eventStore}
           onDayClick={(date: Date) => {
-            setActiveDate(date);
+            setActiveDateState(date);
             setView("DAY");
           }}
         />
@@ -61,13 +66,13 @@ const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
   const moveDateLeft = () => {
     switch (view) {
       case "DAY":
-        setActiveDate(moveDate(activeDate, -1));
+        setActiveDateState(moveDate(activeDateState, -1));
         break;
       case "WEEK":
-        setActiveDate(moveDate(activeDate, -7));
+        setActiveDateState(moveDate(activeDateState, -7));
         break;
       case "MONTH":
-        setActiveDate(moveMonth(activeDate, -1));
+        setActiveDateState(moveMonth(activeDateState, -1));
         break;
     }
   };
@@ -75,18 +80,18 @@ const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
   const moveDateRight = () => {
     switch (view) {
       case "DAY":
-        setActiveDate(moveDate(activeDate, 1));
+        setActiveDateState(moveDate(activeDateState, 1));
         break;
       case "WEEK":
-        setActiveDate(moveDate(activeDate, 7));
+        setActiveDateState(moveDate(activeDateState, 7));
         break;
       case "MONTH":
-        setActiveDate(moveMonth(activeDate, 1));
+        setActiveDateState(moveMonth(activeDateState, 1));
         break;
     }
   };
 
-  const dateInfo = getDateInfo(activeDate);
+  const dateInfo = getDateInfo(activeDateState);
   return (
     <>
       <div className="d-flex justify-content-between m-4">
@@ -135,7 +140,7 @@ const Calendar = ({ dayStartTime, dayEndTime, eventStore }: Props) => {
             </button>
             <button
               className="btn btn-outline-secondary"
-              onClick={() => setActiveDate(new Date())}
+              onClick={() => setActiveDateState(new Date())}
             >
               Today
             </button>

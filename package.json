@@ -7,14 +7,18 @@
   "umd:main": "dist/umd/index.js",
   "types": "dist/types/index.d.js",
   "files": [
-    "dist/**"
+    "dist/cjs/**",
+    "dist/esm/**",
+    "dist/types/**",
+    "dist/umd/**"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types && npm run build:demo",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:umd": "webpack --mode production",
     "build:types": "tsc -p tsconfig.types.json",
+    "build:demo": "webpack --config webpack.demo.config.js --mode production && cp demo/index.html dist/demo",
     "clean": "node bin/clean.js",
     "clean:build": "npm run clean && npm run build"
   },
