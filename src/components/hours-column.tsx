@@ -1,3 +1,4 @@
+import React from 'react';
 import { formatHour } from "../utils/time";
 
 export interface Props {

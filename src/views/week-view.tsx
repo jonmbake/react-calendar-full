@@ -1,3 +1,4 @@
+import React from 'react';
 import CalendarEventStore from "../calendar-event-store";
 import HoursColumn from "../components/hours-column";
 import { datesOfWeek } from "../utils/date";

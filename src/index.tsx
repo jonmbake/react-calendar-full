@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DayView, MonthView, WeekView } from "./views";
 import { getDateInfo, moveDate, moveMonth } from "./utils/date";
 import CalendarEventStore from "./calendar-event-store";

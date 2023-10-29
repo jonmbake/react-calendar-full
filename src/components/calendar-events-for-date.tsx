@@ -1,3 +1,4 @@
+import React from 'react';
 import { CalendarEvent } from "../calendar-event-store";
 import { calculateMinutesSinceMidnight } from "../utils/time";
 
