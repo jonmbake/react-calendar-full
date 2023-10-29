@@ -1,0 +1,56 @@
+{
+  "name": "react-calendar-events",
+  "version": "0.1.0",
+  "description": "React calendar component with event scheduling and monthly, weekly, and daily views.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "umd:main": "dist/umd/index.js",
+  "types": "dist/types/index.d.js",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:umd": "webpack --mode production",
+    "build:types": "tsc -p tsconfig.types.json",
+    "clean": "node bin/clean.js",
+    "clean:build": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonmbake/react-calendar-events.git"
+  },
+  "keywords": [
+    "React",
+    "Calendar",
+    "Component",
+    "Events",
+    "Week",
+    "Month",
+    "Day"
+  ],
+  "author": "Jon Bake",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonmbake/react-calendar-events/issues"
+  },
+  "homepage": "https://github.com/jonmbake/react-calendar-events#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@types/node": "^20.8.9",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "bootstrap": "^5.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
