@@ -40,7 +40,7 @@ function CalendarDemo() {
   return (
     <div className="container">
       <Calendar
-        activeDate={ new Date("2023-10-24T00:00")}
+        activeDate={new Date("2023-10-24T00:00")}
         dayStartTime={5}
         dayEndTime={23}
         eventStore={calenderEventStore}
