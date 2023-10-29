@@ -1,9 +1,13 @@
-# react-calendar-plus
+# react-calendar-plus :calendar: :heavy_plus_sign:
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 ![React Version](https://img.shields.io/badge/react-v17+-blue.svg)
 
 A React calendar component offering similar functionality to iOS calendar-- can toggle between daily, weekly, and monthly views; can add events, etc.
+
+## Demo
+
+A demo is worth a thousands words! :astonished: **[Check it out the demo!](https://jonmbake.github.io/react-calendar-plus/)**
 
 ![React Calendar Plus](https://github.com/jonmbake/screenshots/raw/master/react-calendar-plus.png)
 
