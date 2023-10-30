@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DayView, MonthView, WeekView } from "./views";
 import { getDateInfo, moveDate, moveMonth } from "./utils/date";
-import CalendarEventStore from "./calendar-event-store";
+import CalendarEventStore, {CalendarEvent} from "./calendar-event-store";
 import "bootstrap/dist/css/bootstrap.css";
 import "./calendar.css";
 
@@ -157,4 +157,5 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
     </>
   );
 };
+export { CalendarEventStore, CalendarEvent };
 export default Calendar;

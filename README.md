@@ -32,7 +32,7 @@ import React from 'react';
 import { Calendar, CalendarEvent, CalendarEventStore } from 'react-calendar-plus';
 
 function CalendarDemo() {
-  const demoEvents: Array<CalendarEvent> = [
+  const initialEvents: Array<CalendarEvent> = [
     {
       id: 1,
       description: "Morning Meeting",
@@ -63,16 +63,16 @@ function CalendarDemo() {
     }
   ];
   
-  const calenderEventStore = new CalendarEventStore(demoEvents);
+  const calenderEventStore = new CalendarEventStore(initialEvents);
 
   // Support for listening for calendar events:
-  calenderEventStore.onAdd((event) => {
+  calenderEventStore.onAdd((event: CalendarEvent) => {
     console.log("Added event:", event);
   });
-  calenderEventStore.onUpdate((event) => {
+  calenderEventStore.onUpdate((event: CalendarEvent) => {
     console.log("Updated event:", event);
   });
-  calenderEventStore.onDelete((event) => {
+  calenderEventStore.onDelete((event: CalendarEvent) => {
     console.log("Deleted event:", event);
   });
 
