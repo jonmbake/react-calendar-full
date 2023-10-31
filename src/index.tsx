@@ -15,11 +15,13 @@ export interface Props {
 const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) => {
   const [view, setView] = useState("WEEK");
   const [activeDateState, setActiveDateState] = useState(activeDate || new Date());
-  const [, setEvents] = useState(eventStore.events);
+  const [, setEventStoreUpdateNumber] = useState(0); // TO DO: Refactor - A not-so-great way to force re-render on event store update.
 
   useEffect(() => {
-    setEvents(eventStore.events);
-  }, [eventStore.events]);
+    eventStore.onAdd(() => setEventStoreUpdateNumber(prev => prev + 1));
+    eventStore.onUpdate(() => setEventStoreUpdateNumber(prev => prev + 1));
+    eventStore.onDelete(() => setEventStoreUpdateNumber(prev => prev + 1));
+  }, [eventStore]);
 
   useEffect(() => {
     setActiveDateState(activeDate || new Date());
@@ -93,7 +95,7 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
 
   const dateInfo = getDateInfo(activeDateState);
   return (
-    <>
+    <div className="calendar">
       <div className="d-flex justify-content-between m-4">
         <div className="fs-4">
           <strong>{dateInfo.month}</strong> {dateInfo.year}
@@ -154,7 +156,7 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
         </div>
       </div>
       {viewEL}
-    </>
+    </div>
   );
 };
 export { CalendarEventStore, CalendarEvent };

@@ -48,6 +48,10 @@
   padding: 0;
 }
 
+.calendar {
+  text-align: left;
+}
+
 .calendar-event {
   position: absolute;
   width: 100%;
