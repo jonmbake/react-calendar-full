@@ -25,9 +25,9 @@ Or using yarn:
 yarn add react-calendar-plus
 ```
 
-## Usage
+## Example Usage
 
-```javascript
+```typescript
 import React from 'react';
 import { Calendar, CalendarEvent, CalendarEventStore } from 'react-calendar-plus';
 
@@ -67,13 +67,32 @@ function CalendarDemo() {
 
   // Support for listening for calendar events:
   calenderEventStore.onAdd((event: CalendarEvent) => {
-    console.log("Added event:", event);
+    // Call server to add event
+    fetch('https://api.example.com/events', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(event)
+    });
   });
   calenderEventStore.onUpdate((event: CalendarEvent) => {
-    console.log("Updated event:", event);
+    // Call server to add event
+    fetch(`https://api.example.com/events/${event.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(event)
+    });
   });
   calenderEventStore.onDelete((event: CalendarEvent) => {
-    console.log("Deleted event:", event);
+    fetch(`https://api.example.com/events/${event.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   });
 
   return (

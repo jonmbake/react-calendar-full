@@ -1,7 +1,6 @@
 import React from 'react';
 import CalendarEventStore from "../calendar-event-store";
 import { areDatesEqual } from "../utils/date";
-import "./month-view.css";
 
 interface Props {
   activeDate: Date;

@@ -14,8 +14,8 @@
   ],
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types && npm run build:demo",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && cp ./src/calendar.css ./dist/cjs/",
+    "build:esm": "tsc -p tsconfig.esm.json && cp ./src/calendar.css ./dist/esm/",
     "build:umd": "webpack --mode production",
     "build:types": "tsc -p tsconfig.types.json",
     "build:demo": "webpack --config webpack.demo.config.js --mode production && cp demo/index.html dist/demo",
