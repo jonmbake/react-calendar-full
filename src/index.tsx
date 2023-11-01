@@ -101,7 +101,7 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
           <strong>{dateInfo.month}</strong> {dateInfo.year}
         </div>
         <div
-          className="calendar-views-toggle btn-group btn-group-sm"
+          className="btn-group btn-group-sm"
           role="group"
         >
           <button
@@ -129,30 +129,28 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
             Month
           </button>
         </div>
-        <div>
-          <div
-            className="calendar-views-toggle btn-group btn-group-sm"
-            role="group"
+        <div
+          className="btn-group btn-group-sm"
+          role="group"
+        >
+          <button
+            className="btn btn-outline-secondary"
+            onClick={moveDateLeft}
           >
-            <button
-              className="btn btn-outline-secondary"
-              onClick={moveDateLeft}
-            >
-              &lt;
-            </button>
-            <button
-              className="btn btn-outline-secondary"
-              onClick={() => setActiveDateState(new Date())}
-            >
-              Today
-            </button>
-            <button
-              className="btn btn-outline-secondary"
-              onClick={moveDateRight}
-            >
-              &gt;
-            </button>
-          </div>
+            &lt;
+          </button>
+          <button
+            className="btn btn-outline-secondary"
+            onClick={() => setActiveDateState(new Date())}
+          >
+            Today
+          </button>
+          <button
+            className="btn btn-outline-secondary"
+            onClick={moveDateRight}
+          >
+            &gt;
+          </button>
         </div>
       </div>
       {viewEL}
