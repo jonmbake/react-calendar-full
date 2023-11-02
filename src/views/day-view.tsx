@@ -1,7 +1,7 @@
 import React from 'react';
-import CalendarEventStore from "../calendar-event-store";
-import DayColumn from "../components/day-column";
-import HoursColumn from "../components/hours-column";
+import CalendarEventStore from '../calendar-event-store';
+import DayColumn from '../components/day-column';
+import HoursColumn from '../components/hours-column';
 
 interface Props {
   activeDate: Date;

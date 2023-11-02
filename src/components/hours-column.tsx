@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatHour } from "../utils/time";
+import { formatHour } from '../utils/time';
 
 export interface Props {
   dayStartTime: number;

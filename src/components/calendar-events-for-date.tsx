@@ -1,6 +1,6 @@
 import React from 'react';
-import { CalendarEvent } from "../calendar-event-store";
-import { calculateMinutesSinceMidnight } from "../utils/time";
+import { CalendarEvent } from '../calendar-event-store';
+import { calculateMinutesSinceMidnight } from '../utils/time';
 
 export interface Props {
   dayStartTime: number;
@@ -33,7 +33,7 @@ const CalendarEventsForDate = ({ dayStartTime, events, onClick }: Props) => {
             key={event.id}
             className="calendar-event green"
             style={positionStyle}
-            onClick={(e: any) => {
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => {
               e.stopPropagation();
               onClick(event);
             }}

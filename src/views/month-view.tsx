@@ -1,22 +1,14 @@
 import React from 'react';
-import CalendarEventStore from "../calendar-event-store";
-import { areDatesEqual } from "../utils/date";
+import CalendarEventStore from '../calendar-event-store';
+import { areDatesEqual } from '../utils/date';
 
 interface Props {
   activeDate: Date;
-  dayStartTime: number;
-  dayEndTime: number;
   eventStore: CalendarEventStore;
   onDayClick: (date: Date) => void;
 }
 
-const MonthView = ({
-  activeDate,
-  dayStartTime,
-  dayEndTime,
-  eventStore,
-  onDayClick,
-}: Props) => {
+const MonthView = ({ activeDate, eventStore, onDayClick }: Props) => {
   const getDaysInMonth = (date: Date) => {
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   };
@@ -33,7 +25,7 @@ const MonthView = ({
     <div className="container">
       <div className="calendar-month-view">
         <div className="weekdays-row">
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
             <div className="day-header" key={day}>
               {day}
             </div>
@@ -55,17 +47,17 @@ const MonthView = ({
           return (
             <div
               className={`calendar-day ${
-                isWithinMonth ? "active" : "inactive"
+                isWithinMonth ? 'active' : 'inactive'
               }`}
               key={index}
               onClick={() => onDayClick(date)}
             >
-              <div className={areDatesEqual(date, new Date()) ? "fw-bold" : ""}>
-                {isWithinMonth ? day : ""}
+              <div className={areDatesEqual(date, new Date()) ? 'fw-bold' : ''}>
+                {isWithinMonth ? day : ''}
               </div>
               {eventCount > 0 && (
                 <div className="badge bg-primary">
-                  {eventCount} Event{eventCount > 1 ? "s" : ""}
+                  {eventCount} Event{eventCount > 1 ? 's' : ''}
                 </div>
               )}
             </div>

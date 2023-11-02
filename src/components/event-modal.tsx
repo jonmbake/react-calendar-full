@@ -1,7 +1,7 @@
-import React, { FormEvent, useEffect, useState } from "react";
-import CalendarEventStore, { CalendarEvent } from "../calendar-event-store";
-import { formatTimeToHHmm } from "../utils/time";
-import { formatDateToYYYYMMDD } from "../utils/date";
+import React, { FormEvent, useEffect, useState } from 'react';
+import CalendarEventStore, { CalendarEvent } from '../calendar-event-store';
+import { formatTimeToHHmm } from '../utils/time';
+import { formatDateToYYYYMMDD } from '../utils/date';
 
 type Props = {
   date: Date;
@@ -22,7 +22,7 @@ const EventModal = ({
     event || {
       id: 0,
       date: formatDateToYYYYMMDD(date),
-      description: "",
+      description: '',
       startTime: formatTimeToHHmm(dayStartTime, 0),
       endTime: formatTimeToHHmm(dayStartTime + 1, 0),
     },
@@ -39,15 +39,15 @@ const EventModal = ({
     const formData = new FormData(e.currentTarget);
     eventStore.addOrUpdate({
       id: event?.id,
-      date: formData.get("date") as string,
-      description: formData.get("description") as string,
-      startTime: formData.get("startTime")?.toString() || "",
-      endTime: formData.get("endTime")?.toString() || "",
+      date: formData.get('date') as string,
+      description: formData.get('description') as string,
+      startTime: formData.get('startTime')?.toString() || '',
+      endTime: formData.get('endTime')?.toString() || '',
     });
     onClose();
   };
 
-  const handleDelete = (e: FormEvent<HTMLButtonElement>) => {
+  const handleDelete = () => {
     if (event?.id == null) {
       onClose();
       return;
@@ -56,7 +56,9 @@ const EventModal = ({
     onClose();
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) => {
     const { name, value } = event.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
@@ -64,8 +66,8 @@ const EventModal = ({
   return (
     <>
       <div
-        className={`modal ${isOpen ? "show" : ""}`}
-        style={{ display: isOpen ? "block" : "none" }}
+        className={`modal ${isOpen ? 'show' : ''}`}
+        style={{ display: isOpen ? 'block' : 'none' }}
       >
         <div className="modal-dialog">
           <div className="modal-content">

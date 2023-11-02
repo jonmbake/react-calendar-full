@@ -20,7 +20,9 @@
     "build:types": "tsc -p tsconfig.types.json",
     "build:demo": "webpack --config webpack.demo.config.js --mode production && cp demo/index.html dist/demo",
     "clean": "node bin/clean.js",
-    "clean:build": "npm run clean && npm run build"
+    "clean:build": "npm run clean && npm run build",
+    "format": "eslint --ext js,ts,tsx src --fix && prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}'"
   },
   "repository": {
     "type": "git",
@@ -42,7 +44,13 @@
   },
   "homepage": "https://github.com/jonmbake/react-calendar-plus#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "css-loader": "^6.8.1",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.0.3",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",

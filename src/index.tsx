@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { DayView, MonthView, WeekView } from "./views";
-import { getDateInfo, moveDate, moveMonth } from "./utils/date";
-import CalendarEventStore, {CalendarEvent} from "./calendar-event-store";
-import "bootstrap/dist/css/bootstrap.css";
-import "./calendar.css";
+import React, { useEffect, useState } from 'react';
+import { DayView, MonthView, WeekView } from './views';
+import { getDateInfo, moveDate, moveMonth } from './utils/date';
+import CalendarEventStore, { CalendarEvent } from './calendar-event-store';
+import 'bootstrap/dist/css/bootstrap.css';
+import './calendar.css';
 
 export interface Props {
-  activeDate?: Date,
+  activeDate?: Date;
   dayStartTime: number;
   dayEndTime: number;
   eventStore: CalendarEventStore;
 }
 
-const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) => {
-  const [view, setView] = useState("WEEK");
-  const [activeDateState, setActiveDateState] = useState(activeDate || new Date());
+const Calendar = ({
+  activeDate,
+  dayStartTime,
+  dayEndTime,
+  eventStore,
+}: Props) => {
+  const [view, setView] = useState('WEEK');
+  const [activeDateState, setActiveDateState] = useState(
+    activeDate || new Date(),
+  );
   const [, setEventStoreUpdateNumber] = useState(0); // TO DO: Refactor - A not-so-great way to force re-render on event store update.
 
   useEffect(() => {
-    eventStore.onAdd(() => setEventStoreUpdateNumber(prev => prev + 1));
-    eventStore.onUpdate(() => setEventStoreUpdateNumber(prev => prev + 1));
-    eventStore.onDelete(() => setEventStoreUpdateNumber(prev => prev + 1));
+    eventStore.onAdd(() => setEventStoreUpdateNumber((prev) => prev + 1));
+    eventStore.onUpdate(() => setEventStoreUpdateNumber((prev) => prev + 1));
+    eventStore.onDelete(() => setEventStoreUpdateNumber((prev) => prev + 1));
   }, [eventStore]);
 
   useEffect(() => {
@@ -29,7 +36,7 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
 
   let viewEL;
   switch (view) {
-    case "DAY":
+    case 'DAY':
       viewEL = (
         <DayView
           activeDate={activeDateState}
@@ -39,7 +46,7 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
         />
       );
       break;
-    case "WEEK":
+    case 'WEEK':
       viewEL = (
         <WeekView
           activeDate={activeDateState}
@@ -49,16 +56,14 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
         />
       );
       break;
-    case "MONTH":
+    case 'MONTH':
       viewEL = (
         <MonthView
           activeDate={activeDateState}
-          dayStartTime={dayStartTime}
-          dayEndTime={dayEndTime}
           eventStore={eventStore}
           onDayClick={(date: Date) => {
             setActiveDateState(date);
-            setView("DAY");
+            setView('DAY');
           }}
         />
       );
@@ -67,13 +72,13 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
 
   const moveDateLeft = () => {
     switch (view) {
-      case "DAY":
+      case 'DAY':
         setActiveDateState(moveDate(activeDateState, -1));
         break;
-      case "WEEK":
+      case 'WEEK':
         setActiveDateState(moveDate(activeDateState, -7));
         break;
-      case "MONTH":
+      case 'MONTH':
         setActiveDateState(moveMonth(activeDateState, -1));
         break;
     }
@@ -81,13 +86,13 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
 
   const moveDateRight = () => {
     switch (view) {
-      case "DAY":
+      case 'DAY':
         setActiveDateState(moveDate(activeDateState, 1));
         break;
-      case "WEEK":
+      case 'WEEK':
         setActiveDateState(moveDate(activeDateState, 7));
         break;
-      case "MONTH":
+      case 'MONTH':
         setActiveDateState(moveMonth(activeDateState, 1));
         break;
     }
@@ -100,43 +105,34 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
         <div className="fs-4">
           <strong>{dateInfo.month}</strong> {dateInfo.year}
         </div>
-        <div
-          className="btn-group btn-group-sm"
-          role="group"
-        >
+        <div className="btn-group btn-group-sm" role="group">
           <button
             className={
-              "btn btn-outline-secondary" + (view === "DAY" ? " active" : "")
+              'btn btn-outline-secondary' + (view === 'DAY' ? ' active' : '')
             }
-            onClick={() => setView("DAY")}
+            onClick={() => setView('DAY')}
           >
             Day
           </button>
           <button
             className={
-              "btn btn-outline-secondary" + (view === "WEEK" ? " active" : "")
+              'btn btn-outline-secondary' + (view === 'WEEK' ? ' active' : '')
             }
-            onClick={() => setView("WEEK")}
+            onClick={() => setView('WEEK')}
           >
             Week
           </button>
           <button
             className={
-              "btn btn-outline-secondary" + (view === "MONTH" ? " active" : "")
+              'btn btn-outline-secondary' + (view === 'MONTH' ? ' active' : '')
             }
-            onClick={() => setView("MONTH")}
+            onClick={() => setView('MONTH')}
           >
             Month
           </button>
         </div>
-        <div
-          className="btn-group btn-group-sm"
-          role="group"
-        >
-          <button
-            className="btn btn-outline-secondary"
-            onClick={moveDateLeft}
-          >
+        <div className="btn-group btn-group-sm" role="group">
+          <button className="btn btn-outline-secondary" onClick={moveDateLeft}>
             &lt;
           </button>
           <button
@@ -145,10 +141,7 @@ const Calendar = ({ activeDate, dayStartTime, dayEndTime, eventStore }: Props) =
           >
             Today
           </button>
-          <button
-            className="btn btn-outline-secondary"
-            onClick={moveDateRight}
-          >
+          <button className="btn btn-outline-secondary" onClick={moveDateRight}>
             &gt;
           </button>
         </div>

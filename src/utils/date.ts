@@ -1,34 +1,34 @@
 export const daysOfWeek = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
 ];
 export const daysOfWeekShort = [
-  "Sun",
-  "Mon",
-  "Tue",
-  "Wed",
-  "Thu",
-  "Fri",
-  "Sat",
+  'Sun',
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat',
 ];
 export const monthsOfYear = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 export type DateInfo = {
@@ -46,7 +46,7 @@ export function getDateInfo(inputDate: Date): DateInfo {
   const dayOfMonth = inputDate.getDate();
   const year = inputDate.getFullYear();
 
-  let startOfWeek = new Date(inputDate);
+  const startOfWeek = new Date(inputDate);
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
 
   const endOfWeek = new Date(startOfWeek);
@@ -69,13 +69,13 @@ export function moveDate(date: Date, amount: number): Date {
 }
 
 export function moveMonth(date: Date, amount: number): Date {
-  let newDate = new Date(date);
+  const newDate = new Date(date);
   newDate.setMonth(date.getMonth() + amount);
   return newDate;
 }
 
 export function startOfWeek(date: Date): Date {
-  let startOfWeek = new Date(date);
+  const startOfWeek = new Date(date);
   startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
   return startOfWeek;
 }
@@ -102,8 +102,8 @@ export function areDatesEqual(date1: Date, date2: Date): boolean {
 
 export function formatDateToYYYYMMDD(date: Date): string {
   const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed, so +1 is needed
-  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-indexed, so +1 is needed
+  const day = date.getDate().toString().padStart(2, '0');
 
   return `${year}-${month}-${day}`;
 }

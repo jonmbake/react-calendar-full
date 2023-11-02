@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import CalendarEventStore, { CalendarEvent } from "../calendar-event-store";
+import React, { useState } from 'react';
+import CalendarEventStore, { CalendarEvent } from '../calendar-event-store';
 import {
   areDatesEqual,
   daysOfWeekShort,
   formatDateToYYYYMMDD,
-} from "../utils/date";
-import { minutesSinceMidnightToHHmm, roundToNearest15 } from "../utils/time";
-import CalendarEventsForDate from "./calendar-events-for-date";
-import EventModal from "./event-modal";
+} from '../utils/date';
+import { minutesSinceMidnightToHHmm, roundToNearest15 } from '../utils/time';
+import CalendarEventsForDate from './calendar-events-for-date';
+import EventModal from './event-modal';
 
 export interface Props {
   date: Date;
@@ -25,8 +25,8 @@ const DayColumn = ({ date, dayStartTime, dayEndTime, eventStore }: Props) => {
     <div className="d-flex flex-column date-col col day-col">
       <div
         className={
-          "day-header" +
-          (areDatesEqual(date, new Date()) ? " bg-dark-subtle" : "")
+          'day-header' +
+          (areDatesEqual(date, new Date()) ? ' bg-dark-subtle' : '')
         }
       >
         <strong>{date.getDate()}</strong> {daysOfWeekShort[date.getDay()]}
@@ -37,7 +37,7 @@ const DayColumn = ({ date, dayStartTime, dayEndTime, eventStore }: Props) => {
         onClick={(e: React.MouseEvent<HTMLDivElement>) => {
           setModalEvent({
             date: formatDateToYYYYMMDD(date),
-            description: "",
+            description: '',
             startTime: minutesSinceMidnightToHHmm(
               roundToNearest15(dayStartTime * 60 + e.nativeEvent.offsetY),
             ),
