@@ -1,3 +1,13 @@
+@media (max-width: 576px) {
+  body {
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 12px;
+  }
+}
+
+
 .time-col {
   flex: 0 0 auto;
   width: 9%;

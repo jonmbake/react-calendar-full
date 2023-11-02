@@ -103,7 +103,8 @@ const Calendar = ({
     <div className="calendar">
       <div className="d-flex justify-content-between m-4">
         <div className="fs-4">
-          <strong>{dateInfo.month}</strong> {dateInfo.year}
+        <span className='d-none d-sm-block'><strong>{dateInfo.month}</strong> {dateInfo.year}</span>
+        <span className='d-block d-sm-none'><strong>{dateInfo.month.substring(0,3)}</strong> {dateInfo.year.toString().substring(2,4)}</span>
         </div>
         <div className="btn-group btn-group-sm" role="group">
           <button
