@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-plus",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "React calendar component with event scheduling and monthly, weekly, and daily views.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
