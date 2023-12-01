@@ -9,7 +9,7 @@ A full-featured React calendar component with event scheduling and monthly, week
 
 **[Check it out the demo!](https://jonmbake.github.io/react-calendar-full/)**
 
-![React Calendar Full](https://github.com/jonmbake/screenshots/raw/master/react-calendar-full.png)
+![React Calendar Full](https://github.com/jonmbake/screenshots/raw/master/react-calendar-plus.png)
 
 ## Installation
 
