@@ -1,35 +1,35 @@
-# react-calendar-plus :calendar: :heavy_plus_sign:
+# react-calendar-full :calendar:
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 ![React Version](https://img.shields.io/badge/react-v17+-blue.svg)
 
-A React calendar component offering similar functionality to iOS calendar-- can toggle between daily, weekly, and monthly views; can add events, etc.
+A full-featured React calendar component with event scheduling and monthly, weekly, and daily views.
 
 ## Demo
 
-A demo is worth a thousands words! :astonished: **[Check it out the demo!](https://jonmbake.github.io/react-calendar-plus/)**
+**[Check it out the demo!](https://jonmbake.github.io/react-calendar-full/)**
 
-![React Calendar Plus](https://github.com/jonmbake/screenshots/raw/master/react-calendar-plus.png)
+![React Calendar Full](https://github.com/jonmbake/screenshots/raw/master/react-calendar-full.png)
 
 ## Installation
 
 Using npm:
 
 ```bash
-npm install react-calendar-plus --save
+npm install react-calendar-full --save
 ```
 
 Or using yarn:
 
 ```bash
-yarn add react-calendar-plus
+yarn add react-calendar-full
 ```
 
 ## Example Usage
 
 ```typescript
 import React from 'react';
-import { Calendar, CalendarEvent, CalendarEventStore } from 'react-calendar-plus';
+import { Calendar, CalendarEvent, CalendarEventStore } from 'react-calendar-full';
 
 function CalendarDemo() {
   const initialEvents: Array<CalendarEvent> = [

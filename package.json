@@ -1,7 +1,7 @@
 {
-  "name": "react-calendar-plus",
+  "name": "react-calendar-full",
   "version": "0.2.4",
-  "description": "React calendar component with event scheduling and monthly, weekly, and daily views.",
+  "description": "A full-featured React calendar component with event scheduling and monthly, weekly, and daily views.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "umd:main": "dist/umd/index.js",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jonmbake/react-calendar-plus.git"
+    "url": "git+https://github.com/jonmbake/react-calendar-full.git"
   },
   "keywords": [
     "React",
@@ -40,9 +40,9 @@
   "author": "Jon Bake",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jonmbake/react-calendar-plus/issues"
+    "url": "https://github.com/jonmbake/react-calendar-full/issues"
   },
-  "homepage": "https://github.com/jonmbake/react-calendar-plus#readme",
+  "homepage": "https://github.com/jonmbake/react-calendar-full#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.9.1",
     "@typescript-eslint/parser": "^6.9.1",
